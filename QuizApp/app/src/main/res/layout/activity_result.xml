@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="@drawable/ic_bg"
+    tools:context=".ResultActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Result"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColor="@android:color/white"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:srcCompat="@drawable/ic_trophy" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hey, Congratulations!"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColor="@android:color/white"/>
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/tv_score"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Score"
+    android:textAlignment="center"
+    android:gravity="center"
+    android:textSize="24dp"
+        android:layout_margin="16dp"
+    />
+    <Button
+        android:id="@+id/result_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:padding="16dp"
+        android:text="FINISH"
+        android:textColor="@color/colorPrimary"
+        android:background="@android:color/white"/>
+
+</LinearLayout>
