@@ -13,8 +13,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_brush_size.*
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.provider.MediaStore
 import android.widget.Toast
+import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +40,8 @@ class MainActivity : AppCompatActivity() {
 
         ib_gallery.setOnClickListener {
             if(isReadStorageAllowed()){
-
+                val pickPhotoIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                startActivityForResult(pickPhotoIntent, GALLERY)
             } else {
                 requestStroragePermission()
             }
@@ -113,6 +117,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK){
+            if(requestCode == GALLERY){
+                try {
+                    if(data!!.data != null){
+                        iv_background.visibility = View.VISIBLE
+                        iv_background.setImageURI(data.data)
+                    } else {
+                        Toast.makeText(this, "Error in parsing image or its corrupted", Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception){
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+
     private fun isReadStorageAllowed(): Boolean {
         val result = ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE)
         return result == PackageManager.PERMISSION_GRANTED
@@ -120,5 +142,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val STORAGE_PERMISSION_CODE = 1
+        private const val GALLERY = 2
     }
 }
