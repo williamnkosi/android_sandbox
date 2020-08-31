@@ -175,6 +175,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private inner class bitmapAsyncTask(val mBitmap: Bitmap): AsyncTask<Any,Void, String>(){
+
+
+        private lateinit var mProfressDialog: Dialog
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+            showProgress()
+        }
         override fun doInBackground(vararg params: Any?): String {
             var result = ""
             if(mBitmap != null){
@@ -217,6 +225,18 @@ class MainActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+
+            cancelProgressDialog()
+        }
+
+        private  fun showProgress(){
+            mProfressDialog = Dialog(this@MainActivity)
+            mProfressDialog.setContentView(R.layout.dialog_custom_progress)
+            mProfressDialog.show()
+        }
+
+        private  fun cancelProgressDialog(){
+            mProfressDialog.dismiss()
         }
 
     }
